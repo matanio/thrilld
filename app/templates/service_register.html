@@ -1,0 +1,163 @@
+{% extends 'layout.html' %} {% block content %}
+  <form action="" method="POST">
+    {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+    <div class='form--wide'>
+      <legend class = 'form__title'>Tell Us More About Your <span class="blue">Service</legend> <!-- Cannot pass legend argument due to span class -->
+
+      <div class = "wide-form__group">
+        {{form.name.label(class="form__label")}}
+        <br>
+        {% if form.name.errors %}
+          {{form.name(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.name.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.name(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.email.label(class="form__label")}}
+        <br>
+        {% if form.email.errors %}
+          {{form.email(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.email(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.address_number.label(class="form__label")}}
+        <br>
+        {% if form.address_number.errors %}
+          {{form.address_number(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.address_number.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.address_number(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.address_street.label(class="form__label")}}
+        <br>
+        {% if form.address_street.errors %}
+          {{form.address_street(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.address_street.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.address_street(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.address_suburb.label(class="form__label")}}
+        <br>
+        {% if form.address_suburb.errors %}
+          {{form.address_suburb(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in address_suburb.name.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.address_suburb(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.address_city.label(class="form__label")}}
+        <br>
+        {% if form.address_city.errors %}
+          {{form.address_city(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.address_city.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.address_city(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.address_country.label(class="form__label")}}
+        <br>
+        {% if form.address_country.errors %}
+          {{form.address_country(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.address_country.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.address_country(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.keywords.label(class="form__label")}}
+        <br>
+        {% if form.keywords.errors %}
+          {{form.keywords(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.keywords.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.keywords(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.description.label(class="form__label")}}
+        <br>
+        {% if form.description.errors %}
+          {{form.description(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.description.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.description(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.web_link.label(class="form__label")}}
+        <br>
+        {% if form.web_link.errors %}
+          {{form.web_link(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.web_link.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.web_link(class="wide-form__box")}}
+        {% endif %}
+      </div> <!-- /wide-form__group -->
+
+      <div class = "wide-form__group">
+        {{form.submit(class="wide-submit_button")}}
+      </div><!-- /wide-form__group -->
+
+    </div> <!-- /form--wide -->
+  </form>
+{% endblock %}

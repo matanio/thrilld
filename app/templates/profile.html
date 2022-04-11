@@ -1,0 +1,93 @@
+{% extends 'layout.html' %} {% block content %}
+<div class = "profile_box">
+  <div class="profile_padding">
+    <img class="profile_img" src="{{ image_file }}">
+
+    <div class="profile_info">
+        <h3>{{ current_user.name }}</h3>
+        <p><b>Email: </b>{{ current_user.email }}</p>
+        <p><b>Birthday: </b>{{ current_user.birthday }}</p>
+    </div><!-- /profile_info -->
+    <br>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+      <div class='profile_form'>
+        <legend class = 'form__title'>{{ legend }}</legend>
+
+        <div class = "wide-form__group">
+          {{form.name.label(class="form__label")}}
+          <br>
+          {% if form.name.errors %}
+            {{form.name(class="wide-invalid_form__group")}}
+            <div class="fail_alert">
+              {% for error in form.name.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div><!-- /fail_alert -->
+          {% else %}
+            {{form.name(class="wide-form__box")}}
+          {% endif %}
+        </div><!-- /wide-form__group -->
+
+        <div class = "wide-form__group">
+          {{form.email.label(class="form__label")}}
+          <br>
+          {% if form.email.errors %}
+            {{form.email(class="wide-invalid_form__group")}}
+            <div class="fail_alert">
+              {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div> <!-- /fail_alert -->
+          {% else %}
+            {{form.email(class="wide-form__box")}}
+          {% endif %}
+        </div><!-- /wide-form__group -->
+
+        <div class = "wide-form__group">
+          {{form.birthday.label(class="form__label")}}
+          <br>
+          {% if form.birthday.errors %}
+            {{form.birthday(class="wide-invalid_form__group")}}
+            <div class="fail_alert">
+              {% for error in form.birthday.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div> <!-- /fail_alert -->
+          {% else %}
+            {{form.birthday(class="wide-form__box")}}
+          {% endif %}
+        </div><!-- /wide-form__group -->
+
+        <div class = "wide-form__group">
+          {{form.picture.label(class="form__label")}}
+          {{form.picture(class="pic_upload")}}
+          {% if form.picture.errors %}
+            {% for error in form.picture.errors %}
+            <span class = 'fail_alert'>{{ error }}</span><br>
+            {% endfor %}
+          {% endif %}
+        </div><!-- /wide-form__group -->
+
+        <div class = "wide-form__group">
+          {{form.submit(class="wide-submit_button")}}
+        </div> <!-- /wide-form__group -->
+
+      </div><!-- /profile_form -->
+    </form>
+
+  </div> <!--profile_padding--> <!--This div is used to add a special padding to this page only -->
+</div> <!-- /profile_box -->
+
+<div class="sidebar">
+  <h3>Search</h3>
+  <div class="search-container">
+    <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+      <input type="text" placeholder="Search Anything...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>  <!-- /search-container -->
+  <p>Insert Google Calendar API in future<p>
+</div><!--/sidebar-->
+{% endblock %}

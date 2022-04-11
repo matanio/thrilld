@@ -1,0 +1,47 @@
+  <header>
+    <nav>
+      <ul class="topnav" id='myTopnav'> <!-- Class and id only used for responsive styling at bottom of CSS. This was to keep the original styling intact (I liked it) -->
+        {% if current_user.is_authenticated %} <!-- If the person is logged in -->
+          {% if current_user.role == 'urole' %} <!-- If they're a user (NOT service), show them their user header -->
+            <li><a id = 'logo' class = 'lfloat' href = '/'><img src="/static/images/logowhite.png" alt="Home"></a></li>
+            <li><a {% if request.path == '/' %} class="lfloat active"{% endif %} class = 'lfloat'  href = '/'>Home</a></li>
+            <li><a {% if request.path == '/profile' %} class="lfloat active"{% endif %} class = 'lfloat' href = '/profile'>Profile</a></li>
+            <li><a {% if request.path == '/wall' %} class="lfloat active"{% endif %} class = 'lfloat' href = '/wall'>Wall</a></li>
+            <li>
+              <div class="notifications lfloat"><a href = "/notifications" {% if request.path == '/notifications' %} class="fa fa-globe active"{% endif %}class="fa fa-globe"></a>
+                {%if current_user.new_not > 0 %}<span class="button__badge">{{current_user.new_not}}</span>{% endif %}
+              </div> <!--/notifications-->
+            </li>
+            <li><a href="javascript:void(0);" class=" rfloat icon" onclick="responsiveFunction()"><i class="fa fa-bars"></i></a></li>
+            <li><a class = 'rfloat' href = '/logout'>Logout</a></li>
+
+          {% elif current_user.role == 'srole' %}<!-- If they're a service (NOT user), show them their service header-->
+            <li><a id = 'logo' class = 'lfloat' href = '/service'><img src="/static/images/servicelogowhite.png" alt="Service Home"></a></li>
+            <li><a class = 'lfloat'  href = '/service'>Posts</a></li>
+            <li><a class = 'lfloat' href = '/service/account'>Account</a></li>
+            <li><a href="javascript:void(0);" class=" rfloat icon" onclick="responsiveFunction()"><i class="fa fa-bars"></i></a></li>
+            <li><a class = 'rfloat' href = '/logout'>Logout</a></li>
+            <li><a class = 'rfloat' href = '/post/new'>New Post</a></li>
+          {% endif %}
+
+        {% else %} <!-- If the person is NOT logged in -->
+          <li><a id = 'logo' class = 'lfloat' href = '/'><img src="/static/images/logowhite.png" alt="Home"></a></li>
+          <li><a href="javascript:void(0);" class="rfloat icon" onclick="responsiveFunction()"><i class="fa fa-bars"></i></a></li>
+          <li><a class = 'rfloat' href = '/login'>Login</a></li>
+          <li><a class = 'rfloat' href = '/register'>Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <!--Based on W3 School's Example-->
+  <script>
+    function responsiveFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += "responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>

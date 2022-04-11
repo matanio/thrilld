@@ -1,0 +1,54 @@
+{% extends 'layout.html' %} {% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+  {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+  <div class='form--ctr'>
+    <legend class = 'form__title'>{{ legend }}</legend>
+
+    <div class = "ctr-form__group">
+      {{form.title.label(class="form__label")}} <!--This lets me pass the 'title' label through a different file, and style it with a class of .form_label.-->
+      <br>
+      <!--If there are any errors raised in the form i.e. ValidationError, then style the form-->
+      {% if form.title.errors %}
+        {{form.title(class="ctr-invalid_form__group")}}
+        <div class="fail_alert">
+          {% for error in form.title.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div><!--/fail_alert-->
+      {% else %}
+        {{form.title(class="ctr-form__box")}}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.content.label(class="form__label")}}
+      <br>
+      {% if form.content.errors %}
+        {{form.content(class="ctr-invalid_form__group")}}
+        <div class="fail_alert">
+          {% for error in form.content.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div><!--/fail_alert-->
+      {% else %}
+        {{form.content(class="ctr-form__box")}}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.post_picture.label(class="form__label")}}
+      {{form.post_picture(class="pic_upload")}}
+      {% if form.post_picture.errors %}
+        {% for error in form.post_picture.errors %}
+        <span class = 'fail_alert'>{{ error }}</span><br>
+        {% endfor %}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.submit(class="ctr-submit_button")}}
+    </div><!--/ctr-form__group-->
+
+  </div><!-- /form--ctr -->
+</form>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'layout.html' %} {% block content %}
+<body class = 'service_register_bg'> <!-- Sets the body to have a class that corresponds to a background image -->
+
+  <form action="" method="POST">
+    {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+    <div class='form--ctr'>
+      <legend class = 'form__title'>Sign Up Your <span class="blue">Service</legend> <!-- Cannot pass legend argument due to span class -->
+
+      <div class = "ctr-form__group">
+        {{form.name.label(class="form__label")}}
+        <br>
+        {% if form.name.errors %}
+          {{form.name(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.name.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!--/fail_alert-->
+        {% else %}
+          {{form.name(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!--/ctr-form__group-->
+
+      <div class = "ctr-form__group">
+        {{form.email.label(class="form__label")}}
+        <br>
+        {% if form.email.errors %}
+          {{form.email(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!--/fail_alert-->
+        {% else %}
+          {{form.email(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!--/ctr-form__group-->
+
+      <div class = "ctr-form__group">
+        {{form.password.label(class="form__label")}}
+        <br>
+        {% if form.password.errors %}
+          {{form.password(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!--/fail_alert-->
+        {% else %}
+          {{form.password(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!--/ctr-form__group-->
+
+      <div class = "ctr-form__group">
+        {{form.confirm_password.label(class="form__label")}}
+        <br>
+        {% if form.confirm_password.errors %}
+          {{form.confirm_password(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.confirm_password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!--/fail_alert-->
+        {% else %}
+          {{form.confirm_password(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!--/ctr-form__group-->
+
+      <div class = "ctr-form__group">
+        {{form.submit(class="ctr-submit_button")}}
+      </div> <!--/ctr-form__group-->
+
+    </div> <!--/form--ctr-->
+  </form>
+
+</body> <!-- /service_register_bg -->
+{% endblock %}

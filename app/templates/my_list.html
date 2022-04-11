@@ -1,0 +1,79 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="list_box">
+  <form action="" method="POST" enctype="multipart/form-data">
+    {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+    <div class='list_form'>
+      <legend class = 'form__title'>My List</legend>
+
+      <div class = "margin_fix form__group">
+        {{form.item.label(class="form__label")}}
+        <br>
+        <span>
+          {{form.submit(class="list_add_button")}}
+        </span>
+        {% if form.item.errors %}
+          {{form.item(class="invalid_id_datalist")}}
+
+          <div class="fail_alert">
+            {% for error in form.item.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div><!-- /fail_alert -->
+
+        {% else %}
+          {{form.item(class="id_datalist", list="id_datalist")}}
+          <datalist id="id_datalist"> <!-- Datalist has autocomplete-like function built in -->
+          {% for possible_list_item in possible_list_items %}
+            <option>{{possible_list_item}}</option>
+          {% endfor %}
+          </datalist>
+        {% endif %}
+      </div><!-- /form__group -->
+    </div><!-- /list_form -->
+  </form>
+  <div class = 'full_list'>
+    {% for list_item in list_items %}
+      {%if list_item.completed == 0%} <!-- Only show the incompleted ones -->
+
+        <div class="list_entry">
+          <span class="list_btn"><a class='red' href="#delete/{{list_item.id}}">&#10005;</a></span><!-- The HTML Character Entity for close-mark is '&#10005;'.-->
+          <span class="list_btn"><a class='green' href="{{ url_for('completed_list_item', list_id=list_item.id)}}">&#10003;</a></span><!-- The HTML Character Entity for tick-mark is '&#10003;'.-->
+            {{list_item.item}}
+        </div><!-- /list_entry -->
+
+        <!-- Modal:  CSS and HTML only -->
+        <div id="delete/{{list_item.id}}" class="overlay">
+        	<div class="popup">
+        		<h2>Delete list entry?</h2>
+        		<a class="close" href="">&times;</a><!-- The HTML Character Entity for mutliply (used as close button) is '&times;'.-->
+
+            <div class="content">
+        		    {{current_user.name}}! You can still do this! But, if you really don't want to <i>{{list_item.item}}</i>, don't sweat it -- and neither will we.
+        		</div><!-- /content -->
+
+            <div class="modal_buttons">
+              <a class="close_button" href="">Nah, I got this!</a>
+              <form action="{{ url_for('delete_list_item', list_id=list_item.id)}}" method="POST">
+                <input type="submit" class="delete_button" value="Delete">
+              </form>
+            </div> <!-- /modal_buttons -->
+
+        	</div> <!-- /popup -->
+        </div><!-- /Modal -->
+
+      {% endif %}
+    {% endfor %} <!-- Note: Placing the modal within the for loop is essential - it generates the delete modal for each specific list_item -->
+  </div><!-- /full_list -->
+</div><!-- list_box -->
+
+<div class="sidebar">
+      <h3>Search</h3>
+      <div class="search-container">
+        <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+          <input type="text" placeholder="Search Anything...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>  <!-- /search-container -->
+      <p>Insert Google Calendar API in future<p>
+</div><!--/sidebar-->
+{% endblock %}

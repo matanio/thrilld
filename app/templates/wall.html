@@ -1,0 +1,56 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="posted_pictures">
+  <h1>Wall</h1>
+  {% if wall_items == [] %} <!-- If there isn't anything on their wall, encourage them to complete something -->
+    <div class="empty_message">
+      <p>Hmmm... It looks like you haven't completed anything yet! Go to <a class="blue_link" href="/list">your list</a> to check off anything you've completed!</p>
+    </div> <!-- /empty_message -->
+  {% endif %}
+
+  {% for wall_item in wall_items.items %} <!-- style each wall_item as if it's a polaroid -->
+    <div class="polaroid">
+      <img class="polaroid_img" src="{{ url_for('static', filename='images/wall_pics/' + wall_item.image_file)}}">
+
+      <div class="polaroid_info">
+        <b>{{wall_item.list_name}}</b>
+        <br>
+        {% if wall_item.caption %}
+          "{{wall_item.caption}}"
+          <br>
+          <b>Where: </b>{{wall_item.location_completed}}
+        {% endif %}
+        <br>
+        <br>
+        <i>Date Completed: {{wall_item.date_completed}}</i>
+      </div> <!-- /polaroid_info -->
+
+    </div> <!-- /polaroid -->
+  {% endfor %}
+  <br>
+
+  <div class="pagination"> <!-- Prevents too much data being returned at once -->
+      {% for page_num in wall_items.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %} <!-- Passng these parameters sets the pagination view at the bottom of the page -->
+        {% if page_num %}
+          {% if wall_items.page == page_num %}
+            <a class="a_page active_page" href="{{url_for('wall', page=page_num)}}">{{page_num}}</a>
+          {% else %}
+            <a class="a_page inactive_page" href="{{url_for('wall', page=page_num)}}">{{page_num}}</a>
+          {% endif %}
+        {% else %}
+        <p>...</p>
+        {% endif %}
+      {% endfor %}
+  </div>  <!-- /pagination -->
+</div> <!--posted_pictures-->
+
+<div class="sidebar">
+  <h3>Search</h3>
+  <div class="search-container">
+    <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+      <input type="text" placeholder="Search Anything...">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div> <!--/search-container -->
+  <p>Insert Google Calendar API in future<p>
+</div><!--/sidebar-->
+{% endblock %}

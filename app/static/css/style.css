@@ -1,0 +1,951 @@
+/******** GLOBAL ********/
+
+/*
+My Colours
+- #003fff = my blue
+- #ff7b00 = my orange
+- #4CAF50 = a cool green
+*/
+
+body {
+  color: black;
+  font-family: 'Raleway', sans-serif;
+}
+h1 {
+  font-size:2vw; /* 10vw = 10% of screen size */
+}
+
+h2 {
+  font-size:1.8vw;
+}
+
+h3 {
+  font-size: 1.5vw;
+}
+p {
+  font-size: 1.2vw;
+}
+
+.normal_text_size {
+  font-size: 1.2vw;
+}
+
+.blue { /* For single words (span) */
+  color: #003fff;
+}
+
+.white {
+  color: white;
+}
+
+.lfloat {
+  float: left;
+}
+
+.rfloat {
+  float: right;
+}
+
+.blue_link {
+  color: #003fff;
+  text-decoration: none;
+}
+
+.blue_link:hover {
+  text-decoration: underline;
+}
+
+.empty_message {
+  font-weight: bold;
+  font-style: italic;
+  color: #4CAF50;
+}
+
+/* Global - Forms */
+.form--wide {
+  margin: auto;
+  background-color: white;
+  opacity: 0.87;
+  padding: 3%;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+}
+
+.form--ctr {
+  width: 50%;
+  margin: auto;
+  background-color: white;
+  padding: 3%;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  transition: box-shadow 0.5s;
+}
+
+.form--ctr:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form__title{
+  font-weight: bold;
+  font-size: 2vw; /* 10vw = 10% of Perentage of screen size*/
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ff7b00;
+}
+
+.form__label {
+  font-size: 1.2vw;
+}
+
+.ctr-form__group {
+  padding: 3% 0 3% 0;
+  margin: 1%;
+  border: none;
+}
+
+.ctr-invalid_form__group {
+  padding: 3% 0 3% 3%;
+  width: 97%;
+  border: 2px solid red;
+  background: #f1f1f1;
+}
+
+.ctr-form__box {
+  width: 97%;
+  padding: 3% 0 3% 3%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 1.2vw;
+}
+
+.check_box{
+  font-size: 1.2vw;
+}
+
+.ctr-submit_button {
+  font-size: 1.2vw;
+  background-color: #003fff;
+  color: white;
+  padding: 3% 3%;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.ctr-submit_button:hover {
+  opacity: 1;
+}
+
+.wide-form__group {
+  padding: 1% 0 1% 0;
+  margin: 1%;
+  border: none;
+}
+
+.wide-invalid_form__group {
+  padding: 2% 0 2% 2%;
+  width: 98%;
+  border: 2px solid red;
+  background: #f1f1f1;
+}
+
+.wide-form__box {
+  width: 98%;
+  padding: 2% 0 2% 2%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 1.2vw;
+}
+
+.wide-submit_button {
+  font-size: 1.2vw;
+  background-color: #003fff;
+  color: white;
+  padding: 2% 2%;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.wide-submit_button:hover {
+  opacity: 1;
+}
+
+.pic_upload {
+  font-size: 1.2vw;
+}
+
+/* Global - Flash Messages */
+/* The success message */
+.success_alert {
+  padding: 20px;
+  background-color: #4CAF50;
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* The fail message */
+.fail_alert {
+  color: red;
+  font-weight: bold;
+  margin-top: 15px
+}
+
+/* The restricted-access-only message */
+.restricted_alert {
+  padding: 20px;
+  background-color: red;
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.alert_closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Global - Page No. in Pagination */
+.pagination {
+  display: inline-block;
+}
+
+.a_page {
+  margin-bottom:2%;
+  padding: 3px;
+  border-radius: 3px;
+  overflow: visible;
+  text-decoration: none;
+  font-weight: bolder;
+  float: left;
+  font-size: 1.5vw;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.pagination p {
+  float: left;
+}
+
+.pagination::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.active_page {
+  color: white;
+  background-color: #ff7b00;
+  border: 1px solid #ff7b00 ;
+}
+
+.inactive_page {
+  color: #ff7b00;
+  border: 1px solid #ff7b00 ;
+}
+
+.active_page:hover, .inactive_page:hover {
+  background-color: white;
+  color: #ff7b00;
+}
+
+/* Global - CSS Modal */
+.popup {
+  margin: 70px auto;
+  padding: 3%;
+  background: #ffffff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+}
+
+.popup h2 {
+  float: left;
+  margin-top: 0;
+  color: #333;
+}
+
+.popup .close {
+  position: absolute;
+  display: inline;
+  right: 8%;
+  font-size: 1.8vw;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333333;
+}
+
+.popup .close:hover {
+  color: black;
+}
+
+.popup .content {
+  font-size: 1.1vw;
+  overflow: auto;
+  float: left;
+  margin-bottom: 5%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.close_button {
+  font-size: 1.2vw;
+  float: left;
+  padding: 3%;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: grey;
+}
+
+.close_button:hover {
+  background-color: #777777;
+}
+
+.delete_button {
+  font-size: 1.2vw;
+  float: right;
+  border: none;
+  padding: 3%;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #ff2b2b;
+}
+
+.delete_button:hover {
+  background-color: red;
+}
+
+.update_button {
+  font-size: 1.2vw;
+  float: left;
+  padding: 3%;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: grey;
+}
+
+.update_button:hover {
+  background-color: #777;
+}
+
+.modal_buttons::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/******** LAYOUT ********/
+.header-grid-item { grid-area: header; }
+.left-grid-item { grid-area: left; }
+.main-grid-item { grid-area: main; }
+.right-grid-item { grid-area: right; }
+.footer-grid-item { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'left main main main main right'
+    'footer footer footer footer footer footer';
+  grid-gap: 10px;
+}
+
+/******** HEADER ********/
+header {
+  overflow: hidden;
+  background-image: linear-gradient(to right, #ff7b00 30%, #003fff 110% );
+  background-color: #ff7b00; /* If gradient doesn't work */
+  margin: 0;
+  height: 102%;
+}
+
+header ul {
+  list-style-type: none;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+header li {
+  display: inline;
+}
+
+header a {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1.2em;
+  border-bottom: 1px solid transparent;
+  transition: .3s;
+}
+
+header a:hover {
+ color: black;
+}
+
+.active {
+  border-bottom: 3px solid black;
+  color: black;
+}
+
+.notifications { /* Define what each icon button should look like */
+  color: white;
+  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+  padding: 2px 5px; /* Add some padding so it looks nice */
+}
+
+.button__badge {  /* Make the badge float in the top right corner of the button */
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+  padding: 1px 3px;
+  font-size: 10px;
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: 0;
+  right: 0;
+  left: 30px;
+  margin-top: 10px;
+  right: 10px;
+}
+
+#logo {
+  margin: 0;
+  padding: 0;
+}
+
+#logo:hover {
+  border-bottom: 3px solid transparent;
+}
+
+#logo img {
+  max-height: 3rem;
+  overflow: hidden;
+  margin: 0;
+  padding-left: 10px;
+}
+
+/******** USERS MAIN ********/
+/* login.html */
+#login_welcome {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-size: 2.2vw;
+  margin-bottom: 2%;
+}
+
+#login_welcome img {
+  width: 30%;
+}
+
+/* user_register.html */
+.register_bg video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
+
+/* home.html */
+.home_bg {
+  background-image: url(/static/images/home_bg.jpg);
+  height: 100%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f1f1f1 /* If image doesn't load */
+}
+
+.main_feed{
+  width: 80%;
+  margin:auto;
+  overflow: hidden;
+}
+
+/*The articles feed.*/
+.posted_articles {
+  float: left;
+  width: 75%;
+  margin-top: 10px;
+}
+
+.service_post {
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  padding: 2%;
+  margin-bottom: 10px;
+}
+
+.service_post a {
+  text-decoration: none;
+  color: black;
+}
+
+.service_post a:hover {
+  color: #003fff;
+}
+
+.service_post_img {
+  float: left;
+  width: 12vw;
+  height: 12vw;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.service_post_content {
+  margin-left: 13vw;
+  word-break: break-all;
+}
+
+.post_img_style {
+  width: 100%;
+  position: absolute;
+  display: block;
+  margin: auto;
+}
+
+.metadata {
+  color: grey;
+  border-top: 1px solid #ff7b00;
+  width: 100%
+}
+
+.metadata a, .metadata p {
+  display: inline;
+  font-size: 1.2vw;
+}
+
+.metadata a:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* The sidebar */
+.sidebar {
+  float: left;
+  width: 21.8%;
+  background-color: white;
+  border: 1px solid #ff7b00;
+  border-radius:10px;
+  margin-top: 10px;
+  margin-left: 0.5%;
+  padding: 1%;
+}
+
+
+/* This search bar styling will change in later iterations of the website */
+.sidebar input[type=text] {
+  float: left;
+  padding: 3%;
+  width: 65%;
+  font-size: 1.2vw;
+}
+
+.sidebar .search-container button {
+  float: right;
+  display:inline-block;
+  width: 20%;
+  padding: 3%;
+  background: #dddddd;
+  font-size: 1.5vw;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar .search-container button:hover {
+  background: #cccccc;
+}
+
+.sidebar .search-container::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.sidebar ul {
+  list-style-type: circle;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #003fff;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebar ul {
+  font-size: 1.2vw;
+  padding-left: 25px;
+}
+
+/* service_page.html */
+.service_data {
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  padding: 2%;
+  margin-bottom: 10px;
+}
+/* rest is inherited from other classes used in home.html */
+
+/* profile.html */
+.profile_box{
+  float: left;
+  width: 72.2%;
+  margin-top: 10px;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.profile_padding {
+  padding: 2%;
+}
+
+.profile_img {
+  width: 10vw;
+  height: 10vw;
+  float: left;
+  margin-right: 2vw;
+  border-radius: 50vw;
+}
+
+.profile_form {
+  margin: auto;
+  background-color: white;
+  opacity: 0.87;
+}
+
+/* wall.html */
+.posted_pictures { /*conent-section*/
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  padding: 2%;
+  margin-bottom: 10px;
+}
+
+.polaroid{
+  display: inline-block;
+  width: 20vw;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size: 1.2vw;
+}
+
+.polaroid_img {
+  width: 100%;
+}
+
+.polaroid_info {
+  text-align: center;
+  word-wrap: break-word;
+  padding: 3%;
+}
+
+/* notifications.html */
+.notification_alerts {
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  padding: 2%;
+  margin-bottom: 10px;
+}
+
+.notification {
+  margin: 10px;
+  padding: 3%;
+  display: block;
+  background-color: #f1f1f1f1
+}
+
+.notification-metadata {
+  display: inline-block;
+  text-transform: uppercase;
+  border-top: 1px solid #ff7b00;
+  width: 100%
+}
+
+.notification-metadata p {
+  font-size: 1vw;
+  font-weight: bold;
+  color: grey;
+  float: left;
+  margin-left: 10px;
+}
+
+/* my_list.html */
+.list_box {
+  float: left;
+  width: 72.2%;
+  margin-top: 10px;
+  border: 1px solid #ff7b00;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.list_form {
+  padding: 3%;
+}
+
+.margin_fix {
+  margin-top: 1%;
+}
+
+.id_datalist {
+  width:75%;
+  padding: 2%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 1.2vw;
+}
+
+.list_add_button{
+  float: right;
+  color: white;
+  background-color: #003fff;
+  width: 20%;
+  padding: 2%;
+  font-size: 1.2vw;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.list_add_button:hover {
+  opacity: 1;
+}
+
+.invalid_id_datalist{
+  width:75%;
+  padding: 2%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1f1;
+  font-size: 1.2vw;
+  border: 2px solid red;
+}
+
+.full_list{
+  font-size: 1.2vw;
+}
+
+.list_entry{
+  display: block;
+  background-color: #f1f1f1;
+  padding: 2%;
+  margin: 1% 2% 1% 2%;
+}
+
+.list_btn{
+  margin-left: 3%;
+  font-weight: bold;
+  float: right;
+  font-size: 1.2vw;
+  cursor: pointer;
+  color: red;
+}
+.list_btn .green {
+  color: green;
+  text-decoration: none;
+}
+
+.list_btn .red {
+  color: red;
+  text-decoration: none;
+}
+
+.list_btn a:hover {
+  color: #003fff
+}
+
+/* completed_list */
+
+.complete_bg video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
+
+/***** SERVICES MAIN *****/
+/* services_first_register.html */
+.service_register_bg {
+  background-image: url(/static/images/service_register_bg.png);
+  height: 100%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f1f1f1 /* If image doesn't load */
+}
+
+.my_posted_articles {
+    width: 75%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+
+.service_content {
+  border: 1px solid #ff7b00;
+  border-radius:10px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.metadata_buttons {
+  padding: 2%;
+}
+
+.shome_update_button {
+  font-size: 1.2vw;
+  float: left;
+  padding: 1vw;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: grey;
+}
+
+.shome_update_button:hover {
+  background-color: #777;
+}
+
+.shome_delete_button {
+  font-size: 1.2vw;
+  float: right;
+  border: none;
+  padding: 1vw;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #ff2b2b;
+}
+
+.shome_delete_button {
+  background-color: red;
+}
+
+.metadata_buttons::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* service_account.html */
+.service_profile_box {
+  float: left;
+  width: 72.2%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/***** RESPONSIVE EDITS *****/
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(.icon):not(#logo) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnavresponsive {position: relative;}
+  .topnavresponsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnavresponsive a:not(.icon), .topnavresponsive div:not(.icon)  {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .active {
+    background-color:white ;
+    color: black;
+    border: none;
+  }
+
+  .sidebar {
+    float: none;
+    width: 90%;
+    margin: auto;
+  }
+
+  .posted_articles, .posted_pictures, .service_profile_box, .profile_box, .notification_alerts, .list_box {
+    float: none;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+
+
+}

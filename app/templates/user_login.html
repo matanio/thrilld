@@ -1,0 +1,52 @@
+{% extends 'layout.html' %} {% block content %}
+  <form action="" method="POST">
+    {{form.hidden_tag()}} <!--Adds a CSRF Token to the form-->
+    <div class="form--ctr">
+      <legend class = 'form__title'>Member Login</legend>
+
+      <div class = "ctr-form__group">
+        {{form.email.label(class="form__label")}}
+        <br>
+        {% if form.email.errors %}
+          {{form.email(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.email(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!-- /ctr-form__group -->
+
+      <div class = "ctr-form__group">
+        {{form.password.label(class="form__label")}}
+        <br>
+        {% if form.password.errors %}
+          {{form.password(class="ctr-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div> <!-- /fail_alert -->
+        {% else %}
+          {{form.password(class="ctr-form__box")}}
+        {% endif %}
+      </div> <!-- /ctr-form__group -->
+
+      <div class="check_box">
+        {{ form.remember(class="check_box_input") }}
+        {{ form.remember.label(class="check_box_label")}}
+      </div> <!-- /check_box -->
+
+      <div class = "ctr-form__group">
+        {{form.submit(class="ctr-submit_button")}}
+      </div> <!-- /ctr-form__group -->
+
+      <p><a class = "blue_link" href="#">Forgot password?</a></p>
+      <p><a class = "blue_link" href="/register">Need an account?</a></p>
+
+    </div> <!-- /form--ctr -->
+  </form>
+
+{% endblock %}

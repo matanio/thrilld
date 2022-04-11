@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} {% block content %} 
+<div class="notification_alerts">
+  <h1>Notifications</h1>
+  {% if notifications == [] %}
+    <div class="empty_message">
+      <p>Woohoo! No notifications!</p>
+    </div> <!--/empty_message-->
+  {% endif %}
+
+  {% for notification in notifications %}
+    <div class="notification">
+      <p>{{notification.content}}</p>
+      <p>Click <a class="blue_link" href="/">here</a> to find posts for this bucket list item!</p>
+
+      <div class="notification-metadata">
+        <p>Notified on: {{notification.date}} </p>
+        <p><a class="blue_link" href="/clear_notification/{{notification.id}}">Discard</a></p><!-- A Delete Route -->
+      </div> <!-- /notification-metadata -->
+    </div><!-- /notification-->
+  {% endfor %}
+
+</div><!-- /notification_alerts -->
+<div class="sidebar">
+      <h3>Search</h3>
+      <div class="search-container">
+        <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+          <input type="text" placeholder="Search Anything...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>  <!-- /search-container -->
+      <p>Insert Google Calendar API in future<p>
+</div><!--/sidebar-->
+{% endblock %}

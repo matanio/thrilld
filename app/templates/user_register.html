@@ -1,0 +1,105 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="register_bg"> <!-- Background Video - div is styled so it plays the video as a background-->
+    <video src="/static/videos/register_bg.mp4" autoplay="true", loop="true"></video>
+</div>
+  <form action="" method="POST">
+    {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+    <div class='form--wide'>
+      <legend class = 'form__title'>Join Today; <span class="blue">Live</span> Tomorrow.</legend>
+      <div class = "wide-form__group">
+        {{form.name.label(class="form__label")}}
+        <br>
+        {% if form.name.errors %}
+          {{form.name(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.name.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{form.name(class="wide-form__box")}}
+        {% endif %}
+      </div>
+      <div class = "wide-form__group">
+        {{form.email.label(class="form__label")}}
+        <br>
+        {% if form.email.errors %}
+          {{form.email(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{form.email(class="wide-form__box")}}
+        {% endif %}
+      </div>
+      <div class = "wide-form__group">
+        {{form.birthday.label(class="form__label")}}
+        <br>
+        {% if form.birthday.errors %}
+          {{form.birthday(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.birthday.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{form.birthday(class="wide-form__box")}}
+        {% endif %}      </div>
+      <div class = "wide-form__group">
+        {{form.country.label(class="form__label")}}
+        <br>
+        {% if form.country.errors %}
+          {{form.country(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.country.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{form.country(class="wide-form__box")}}
+        {% endif %}
+      </div><!--/wide-form__group-->
+
+      <div class = "wide-form__group">
+        {{form.password.label(class="form__label")}}
+        <br>
+        {% if form.password.errors %}
+          {{form.password(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{form.password(class="wide-form__box")}}
+        {% endif %}
+      </div><!--/wide-form__group-->
+
+      <div class = "wide-form__group">
+        {{form.confirm_password.label(class="form__label")}}
+        <br>
+        {% if form.confirm_password.errors %}
+          {{form.confirm_password(class="wide-invalid_form__group")}}
+          <div class="fail_alert">
+            {% for error in form.confirm_password.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+          </div><!--/wide-form__group-->
+        {% else %}
+          {{form.confirm_password(class="wide-form__box")}}
+        {% endif %}
+      </div><!--/wide-form__group-->
+
+      <div class = "wide-form__group">
+        {{form.submit(class="wide-submit_button")}}
+      </div><!--/wide-form__group-->
+
+      <p>Already Have An Account? <a class = "blue_link" href="/login">Sign In</a></p>
+      <p>Service? <a  class = "blue_link" href="/service/first/register">Service Sign Up Here</a></p>
+
+    </div>
+  </form>
+
+{% endblock %}

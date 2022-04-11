@@ -1,0 +1,73 @@
+{% extends 'layout.html' %} {% block content %}
+<body class = 'home_bg'>
+  <div class="main_feed">
+    <div class = "posted_articles">
+      {% if service_posts != None %}
+      <div class="service_data">
+        <h1>{{service.name}} - About</h1>
+        <p><b>Email: </b><a class="blue_link" href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{service.email}}&su=RE:+Thrilld+Promotion+Query&body=Hi+{{service.name}}," target="_blank">{{service.email}}</a></p> <!-- href is a gmail link that automatically composes email to the service -->
+        <p><b>Address:</b><br>{{service.address_number}} {{service.address_street}}<br>{{service.address_suburb}}<br>{{service.address_city}}<br>{{service.address_country}}</p>
+        <p><b>Description:</b><br><i>"{{service.description}}"</i></p>
+        <p><b>Website: </b><a class="blue_link" href="{{service.web_link}}" target="_blank">{{service.web_link}}</a></p>
+     </div> <!-- /service_data -->
+      <h2>Posts by {{service.name}} ({{service_posts.total}})</h2>
+        {% for service_post in service_posts.items %}
+            <article class = "service_post">
+
+              <div class="service_post_img">
+                <img class="post_img_style" src="{{ url_for('static', filename='images/post_pics/' + service_post.post_picture)}}">
+              </div><!--/serivce_post_img-->
+
+              <div class="service_post_content">
+                <h1><a href="{{ url_for('post', service_post_id=service_post.id)}}"">{{service_post.title}}</a></h1>
+                <p><b>Company:</b><a href="{{url_for('service_page', servicename=service_post.company )}}"> {{service_post.company}}</a></p>
+                <p>{{service_post.content | truncate(300) }}{% if service_post.content|length > 300 %}<a href="{{ url_for('post', service_post_id=service_post.id)}}"> See more >></a>{% endif %}</p>
+              </div><!--/serivce_post_content-->
+              <br>
+              <div class="metadata">
+                <a class="yes_link" href='#'>YES</a><!-- For future versions, enter corresponding route href here. -->
+                <p>|  Posted {{service_post.date_posted}}</p>
+              </div><!--/metadata-->
+
+            </article><!--/service_post-->
+        {% endfor %}
+      {% endif %}
+
+      <div class="pagination"> <!-- Prevents too much data being returned at once -->
+          {% for page_num in service_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %} <!-- Passng these parameters sets the pagination view at the bottom of the page -->
+            {% if page_num %}
+              {% if service_posts.page == page_num %}
+                <a class="a_page active_page" href="{{url_for('service_page', servicename=service.name, page=page_num)}}">{{page_num}}</a>
+              {% else %}
+                <a class="a_page inactive_page" href="{{url_for('service_page', servicename=service.name, page=page_num)}}">{{page_num}}</a>
+              {% endif %}
+            {% else %}
+            <p>...</p>
+            {% endif %}
+          {% endfor %}
+      </div> <!--/pagination-->
+
+    </div> <!-- /posted_articles -->
+    <div class="sidebar">
+      <h3>Search</h3>
+      <div class="search-container">
+        <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+          <input type="text" placeholder="Search Anything...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div> <!-- /search-container -->
+      <h3><a href="/list">My List</a></h3> <!--a page where they can access and change their list-->
+      <p>
+        <ul>
+          {% for list_item in list_items %}
+            {% if list_item.completed == 0 %} <!-- Only show the incompleted ones -->
+              <li>{{list_item.item}}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <a class="normal_text_size" href="/list"> See All > </a>
+      </p>
+    </div> <!-- /sidebar -->
+  </div><!-- /main_feed -->
+</body> <!-- /home_bg -->
+{% endblock %}

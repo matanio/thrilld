@@ -1,0 +1,57 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="complete_bg"><!-- Background Video - div is styled so it plays the video as a background-->
+    <video src="/static/videos/complete_bg.mp4" autoplay="true", loop="true"></video>
+</div><!-- /complete_bg -->
+
+<form action="" method="POST" enctype="multipart/form-data">
+  {{form.hidden_tag()}} <!--Adds a CSRF Token-->
+  <div class='form--ctr'>
+    <legend class = 'form__title'>{{ legend }}</legend><!-- lets me pass a legend variable in routes.py -->
+
+    <div class = "ctr-form__group">
+      {{form.caption.label(class="form__label")}}
+      <br>
+      {% if form.caption.errors %}<!--If there are any errors raised in the form i.e. ValidationError, then style the form accordingly. Otherwise give it a normal styling-->
+        {{form.caption(class="ctr-invalid_form__group")}}
+        <div class="fail_alert">
+          {% for error in form.caption.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div> <!--/fail_alert-->
+      {% else %}
+        {{form.caption(class="ctr-form__box")}}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.location_completed.label(class="form__label")}}
+      <br>
+      {% if form.location_completed.errors %}
+        {{form.location_completed(class="ctr-invalid_form__group")}}
+        <div class="fail_alert">
+          {% for error in form.location_completed.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div> <!--/fail_alert-->
+      {% else %}
+        {{form.location_completed(class="ctr-form__box")}}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.image_file.label(class="form__label")}}
+      {{form.image_file(class="pic_upload")}}
+      {% if form.image_file.errors %}
+        {% for error in form.image_file.errors %}
+        <span class = 'fail_alert'>{{ error }}</span><br>
+        {% endfor %}
+      {% endif %}
+    </div><!--/ctr-form__group-->
+
+    <div class = "ctr-form__group">
+      {{form.submit(class="ctr-submit_button")}}
+    </div><!--/ctr-form__group-->
+
+  </div><!-- /form--ctr -->
+</form>
+{% endblock %}

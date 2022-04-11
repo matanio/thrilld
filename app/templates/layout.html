@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    {% if page_title %}
+      <title>Thrilld - {{page_title}}</title> <!-- '{{ page_title }}' gets replaced with the content of the page_title variable which is passed to the template by 'render_template'.-->
+    {% else %}
+      <title>Thrilld</title>
+    {% endif %}
+	   <link type='text/css' rel="stylesheet" href="/static/css/style.css?version=51"><!--My CSS-->
+     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"><!--Google Fonts-->
+     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--Icons-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <!--Grid Container - Layout-->
+    <div class="grid-container">
+      <div class="header-grid-item">{% include 'header.html' %}</div>
+      <div class="left-grid-item"></div><!--If I want to use this side for the future, include appropiate files within this tag-->
+      <div class="main-grid-item">
+        
+          <!--Flash Messages Cpde-->
+          {% with messages = get_flashed_messages(with_categories=true)  %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class = '{{category}}_alert'>
+                  <span class="alert_closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}<!--/Flash Messages Code-->
+
+          {% if request.path == '/login' %}
+            <div id="login_welcome"><img src="/static/images/logoorange.png" alt="Welcome to Thrilld!">
+              <br>It's time for <b>dreams</b> to get <b>real</b>.
+            </div><!--/login_welcome-->
+          {% endif %}
+
+          {% block content %}{% endblock %} <!-- This block means I can change the main content of the page while keeping the header, nav and footer constant <!-->
+
+        </div><!--/main-grid-item-->
+        <div class="right-grid-item"></div> <!--If I want to use this side for the future, include appropiate files within this tag-->
+        <div class="footer-grid-item"></div><!--If I want to use this side for the future, include appropiate files within this tag-->
+      </div><!--/grid-container-->
+    </body>
+</html>

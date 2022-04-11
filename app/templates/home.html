@@ -1,0 +1,65 @@
+{% extends 'layout.html' %} {% block content %}
+<body class = 'home_bg'>
+  <div class="main_feed">
+    <div class = "posted_articles">
+      {% if service_posts.items == [] %} <!--If there aren't any service posts being displayed, let them know why -->
+        <div class="empty_message">
+          <p>Hmmm... It doesn't look like there are any posts for your list yet! Go to <a class="blue_link" href="/list">your list</a> to add more!</p>
+        </div>
+      {% endif %}
+      {% for service_post in service_posts.items %}
+        <article class = "service_post">
+
+          <div class="service_post_img">
+            <img class="post_img_style" src="{{ url_for('static', filename='images/post_pics/' + service_post.post_picture)}}">
+          </div><!--/serivce_post_img-->
+
+          <div class="service_post_content">
+            <h1><a href="{{ url_for('post', service_post_id=service_post.id)}}"">{{service_post.title}}</a></h1>
+            <p><b>Company:</b><a href="{{url_for('service_page', servicename=service_post.company )}}"> {{service_post.company}}</a></p>
+            <!-- truncate is a function that limits the content to (n) words, and adds a ... at the end -->
+            <p>{{service_post.content | truncate(300) }}{% if service_post.content|length > 300 %}<a href="{{ url_for('post', service_post_id=service_post.id)}}"> See more >></a>{% endif %}</p>
+          </div><!--/serivce_post_content-->
+          <br>
+          <div class="metadata">
+            <a class="yes_link" href='#'>YES</a><!-- For future versions, enter corresponding route href here. -->
+            <p>|  Posted {{service_post.date_posted}}</p>
+          </div><!--/metadata-->
+
+        </article><!--/service_post-->
+      {% endfor %}
+      <div class="pagination"> <!-- Prevents too much data being returned at once -->
+          {% for page_num in service_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %} <!-- Passng these parameters sets the pagination view at the bottom of the page -->
+            {% if page_num %}
+              {% if service_posts.page == page_num %}
+                <a class="a_page active_page" href="{{url_for('home', page=page_num)}}">{{page_num}}</a>
+              {% else %}
+                <a class="a_page inactive_page" href="{{url_for('home', page=page_num)}}">{{page_num}}</a>
+              {% endif %}
+            {% else %}
+            <p>...</p>
+            {% endif %}
+          {% endfor %}
+      </div><!-- /pagination -->
+    </div> <!--/posted_articles -->
+    <div class="sidebar">
+      <h3>Search</h3>
+      <div class="search-container">
+        <form action = '#'> <!-- In future versions, action will correspond to search route/search functionality here -->
+          <input type="text" placeholder="Search Anything...">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>  <!-- /search-container -->
+      <h3><a href="/list">My List</a></h3> <!--a page where they can access and change their list-->
+      <ul>
+          {% for list_item in list_items %}
+            {% if list_item.completed == 0 %} <!-- Only show the incompleted ones -->
+              <li>{{list_item.item}}</li>
+            {% endif %}
+          {% endfor %}
+      </ul>
+      <p><a class="normal_text_size" href="/list"> See All > </a></p>
+    </div> <!--/sidebar-->
+  </div>
+</body>
+{% endblock %}
